@@ -30,19 +30,26 @@ usdocker mysql status
 ## Run the mysql-client command line interface
 
 ```
-usdocker mysql client
+usdocker mysql client -- [args]
 ```
+
+Example:
+
+```
+usdocker mysql client -- -u root -p
+```
+
 
 ## Connect to the mysql bash interface
 
 ```
-usdocker mysql connect
+usdocker mysql connect -- [args]
 ```
 
 ## Dump the database and save it to the /tmp/dump folder.
 
 ```
-usdocker mysql dump [database]
+usdocker mysql dump -- [database]
 ```
 
 ## Analyse the database service and get insights for tuning it
