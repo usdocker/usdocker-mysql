@@ -21,6 +21,12 @@ usdocker mysql up
 usdocker mysql down
 ```
 
+## Check if the service is running 
+
+```
+usdocker mysql status
+```
+
 ## Run the mysql-client command line interface
 
 ```
