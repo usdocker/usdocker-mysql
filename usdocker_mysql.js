@@ -6,12 +6,13 @@ const SCRIPTNAME = 'mysql';
 
 let config = usdocker.config(SCRIPTNAME);
 let configGlobal = usdocker.configGlobal();
+const CONTAINERNAME = SCRIPTNAME + configGlobal.get('container-suffix');
 
 function getContainerDef() {
 
     let docker = usdocker.dockerRunWrapper(configGlobal);
     return docker
-        .containerName(SCRIPTNAME + configGlobal.get('container-suffix'))
+        .containerName(CONTAINERNAME)
         .port(config.get('port'), 3306)
         .volume(config.get('folder'), '/var/lib/mysql')
         .volume(config.getUserDir('conf.d'), '/etc/mysql/conf.d')
@@ -39,22 +40,22 @@ module.exports = {
 
     client: function(callback, extraArgs)
     {
-        usdocker.exec(SCRIPTNAME, ['mysql'].concat(extraArgs), callback);
+        usdocker.exec(CONTAINERNAME, ['mysql'].concat(extraArgs), callback);
     },
 
     connect: function(callback, extraArgs)
     {
-        usdocker.exec(SCRIPTNAME, ['bash'].concat(extraArgs), callback);
+        usdocker.exec(CONTAINERNAME, ['bash'].concat(extraArgs), callback);
     },
 
     dump: function(callback, extraArgs)
     {
-        usdocker.exec(SCRIPTNAME, ['bash', '/root/mysqldump.sh'].concat(extraArgs), callback);
+        usdocker.exec(CONTAINERNAME, ['bash', '/root/mysqldump.sh'].concat(extraArgs), callback);
     },
 
     analyse: function(callback, extraArgs)
     {
-        usdocker.exec(SCRIPTNAME, ['perl', '/root/mysqltuner.pl'].concat(extraArgs), callback);
+        usdocker.exec(CONTAINERNAME, ['perl', '/root/mysqltuner.pl'].concat(extraArgs), callback);
     },
 
     debugcli(callback) {
@@ -69,20 +70,20 @@ module.exports = {
 
     up: function(callback)
     {
-        usdocker.up(SCRIPTNAME, getContainerDef(), callback);
+        usdocker.up(CONTAINERNAME, getContainerDef(), callback);
     },
 
     status: function(callback) {
-        usdocker.status(SCRIPTNAME, callback);
+        usdocker.status(CONTAINERNAME, callback);
     },
 
     down: function(callback)
     {
-        usdocker.down(SCRIPTNAME, callback);
+        usdocker.down(CONTAINERNAME, callback);
     },
 
     restart: function(callback)
     {
-        usdocker.restart(SCRIPTNAME, getContainerDef(), callback);
+        usdocker.restart(CONTAINERNAME, getContainerDef(), callback);
     }
 };
