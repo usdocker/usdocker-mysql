@@ -1,6 +1,7 @@
 'use strict';
 
 const usdocker = require('usdocker');
+const path = require('path');
 
 const SCRIPTNAME = 'mysql';
 
@@ -33,8 +34,8 @@ module.exports = {
         config.setEmpty('port', 3306);
         config.setEmpty('rootPassword', 'password');
 
-        config.copyToUserDir(__dirname + '/mysql/conf.d');
-        config.copyToUserDir(__dirname + '/mysql/home');
+        config.copyToUserDir(path.join(__dirname, 'mysql', 'conf.d'));
+        config.copyToUserDir(path.join(__dirname, 'mysql', 'home'));
         callback(null, 'setup loaded for ' + SCRIPTNAME);
     },
 
