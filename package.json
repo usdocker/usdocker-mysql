@@ -1,12 +1,11 @@
 {
-  "name": "usdocker-mysql",
+  "name": "@usdocker/mysql",
   "version": "1.0.4",
   "description": "USDocker script for start MySQL ",
   "main": "usdocker_mysql.js",
   "scripts": {
     "test": "./node_modules/.bin/eslint *.js",
-    "preinstall": "npm i -g usdocker",
-    "postinstall": "./node_modules/.bin/usdocker -rv"
+    "postinstall": "usdocker -rv"
   },
   "keywords": [
     "usdocker",
