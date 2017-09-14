@@ -8,6 +8,7 @@ You can persist your mysql and customize your mysql without expertise in Docker.
 ```bash
 npm install -g @usdocker/usdocker # Install it first
 npm install -g @usdocker/mysql
+usdocker -r    # Update USDocker database
 ```
 
 ## Start the mysql service
